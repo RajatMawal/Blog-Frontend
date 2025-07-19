@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../../redux/slice/authSlice";
+import { logoutUser, resetAuthState } from "../../redux/slice/authSlice.js";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -11,7 +11,8 @@ const Logout = () => {
   useEffect(() => {
     dispatch(logoutUser()).then((result) => {
       toast.success("Logged out successfully");
-      navigate("/login");
+      navigate("/");
+      dispatch(resetAuthState());
       window.location.reload();
     });
   }, [dispatch, navigate]);

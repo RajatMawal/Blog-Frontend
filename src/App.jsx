@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -35,21 +35,15 @@ const darkTheme = createTheme({
 });
 
 const App = () => {
-  const { isAuthenticated, loading} = useSelector((state) => state.auth);
+  const { isAuthenticated, loading, user} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  
+  const location = useLocation();
+
   useEffect(() => {
     dispatch(checkUser());
-  }, [dispatch]);
+  }, [dispatch, location.pathname]);
 
-  useEffect(() => {
-  const handlePopState = () => {
-    window.location.reload(); 
-  };
-
-  window.addEventListener("popstate", handlePopState);
-  return () => window.removeEventListener("popstate", handlePopState);
-}, []);
+  console.log("Redux auth state:", isAuthenticated, user);
 
   const navigate = useNavigate();
 

@@ -3,7 +3,7 @@
   import NewspaperIcon from "@mui/icons-material/Newspaper";
   import { FaBars } from "react-icons/fa";
   import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
-  import { logoutUser, resetAuthState } from "../../../redux/slice/authSlice.js";
+  import { checkUser, logoutUser, resetAuthState } from "../../../redux/slice/authSlice.js";
   import { useDispatch, useSelector } from "react-redux";
   import { toast } from "react-toastify";
   import ProtectedRoute from "./ProtectedRoute";
@@ -12,7 +12,7 @@
     const [isOpen, setIsOpen] = useState(false);
     const sidebarRef = useRef(null);
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
+    const { user, isAuthenticated } = useSelector((state) => state.auth);
 
     useEffect(() => {
       const handleClickOutside = (event) => {
@@ -28,6 +28,7 @@
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [isOpen]);
 
+    
 
     return (
       <>

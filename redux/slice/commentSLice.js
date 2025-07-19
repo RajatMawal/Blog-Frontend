@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { approveComments } from "../../../Server/controllers/adminController";
 
 
 export const fetchComment = createAsyncThunk(
