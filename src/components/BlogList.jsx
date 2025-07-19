@@ -40,7 +40,7 @@ const filterBlog = allBlog.filter((item)=>
         </div>
       ))}
     </div>
-    <div className="grid grid-cols-1 sm:grid-cols-2 ml-3.5 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 ml-6 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 ">
       {
         filteredData.length > 0 ? 
           filteredData.map((blog)=>

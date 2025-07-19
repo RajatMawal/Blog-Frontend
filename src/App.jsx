@@ -48,7 +48,7 @@ const App = () => {
   const navigate = useNavigate();
 
   if (loading) {
-    return <Loader/>
+    return <Loader />
   }
 
 

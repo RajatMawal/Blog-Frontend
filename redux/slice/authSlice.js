@@ -27,7 +27,7 @@ export const registerUser = createAsyncThunk(
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/register`,
-        formData
+        formData, { withCredentials: true }
       );
       return res.data.user;
     } catch (error) {
