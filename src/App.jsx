@@ -60,8 +60,8 @@ const App = () => {
         <Container>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Home />} />
             <Route path="/blog/:id" element={<Blog />} />
             <Route path="login" element={isAuthenticated ? <Navigate to="/admin" /> : <Login />} />
             <Route path="/admin" element={<ProtectedRoute />}>
