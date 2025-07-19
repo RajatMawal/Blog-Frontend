@@ -35,7 +35,6 @@ try {
 export const commentApprove = createAsyncThunk("admin/approve" , async(id,thunkAPI)=>{
  try {
    const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/admin/approve-comments`,{id})
-  //  thunkAPI.dispatch(fetchComment());
   return res.data.message
  } catch (error) {
   console.log(error)
