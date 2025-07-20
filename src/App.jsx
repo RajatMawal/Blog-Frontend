@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkUser, resetAuthState } from "../redux/slice/authSlice.js";
 import { ToastContainer, toast } from "react-toastify";
 import NotFound from "./components/NotFOund.jsx";
-import AddUser from "./pages/addUser.jsx";
+import AddUser from "./pages/Admin/addUser.jsx"
 import Logout from "./components/Logout.jsx";
 import Loader from "./components/Loader.jsx";
 
@@ -35,13 +35,19 @@ const darkTheme = createTheme({
 });
 
 const App = () => {
-  const { isAuthenticated, loading, user} = useSelector((state) => state.auth);
+  const { isAuthenticated, loading, user ,justLoggedOut} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const location = useLocation();
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   dispatch(checkUser());
+  // }, [dispatch]);
+
+ useEffect(() => {
+  if (!justLoggedOut) {
     dispatch(checkUser());
-  }, [dispatch, location.pathname]);
+  }
+}, [location.pathname]);
 
   console.log("Redux auth state:", isAuthenticated, user);
 

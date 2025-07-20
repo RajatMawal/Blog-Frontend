@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../redux/slice/authSlice.js";
+import { registerUser } from "../../../redux/slice/authSlice";
 import { toast } from "react-toastify";
 
 const AddUser = () => {
