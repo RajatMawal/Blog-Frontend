@@ -39,15 +39,17 @@ const App = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  // useEffect(() => {
-  //   dispatch(checkUser());
-  // }, [dispatch]);
-
- useEffect(() => {
-  if (!justLoggedOut) {
+  useEffect(() => {
     dispatch(checkUser());
+  }, [dispatch]);
+
+  
+useEffect(() => {
+  if (justLoggedOut) {
+    dispatch(checkUser());
+    dispatch(resetAuthState()); // ✅ reset the flag
   }
-}, [location.pathname]);
+}, [justLoggedOut]);
 
   console.log("Redux auth state:", isAuthenticated, user);
 
@@ -56,7 +58,6 @@ const App = () => {
   if (loading) {
     return <Loader />
   }
-
 
 
   return (

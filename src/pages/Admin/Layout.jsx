@@ -35,11 +35,11 @@ const Layout = () => {
 
   const handleLogout = async () => {
     try {
-      await dispatch(logoutUser()).unwrap(); // Clears token from cookie
-      dispatch(resetAuthState()); // Clears Redux auth state
+      await dispatch(logoutUser()).unwrap();
+      dispatch(resetAuthState()); 
       toast.success("Logged out successfully");
       navigate("/");
-      setTimeout(() => window.location.reload(), 100); // Ensure clean state
+      setTimeout(() => window.location.reload(), 100); 
     } catch (err) {
       toast.error("Logout failed");
     }
@@ -96,8 +96,8 @@ const Layout = () => {
                 className="w-12 h-12 rounded-full"
               />
               <div>
-                <h2 className="text-lg font-semibold first-letter:uppercase">
-                  {user?.name || "Guest"}
+                <h2 className="text-lg text-white font-semibold first-letter:uppercase">
+                  {user.name }
                 </h2>
                 <span className="text-xs text-gray-400">View profile</span>
               </div>

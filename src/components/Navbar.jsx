@@ -10,6 +10,9 @@ import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { VscAccount } from "react-icons/vsc";
 import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { checkUser } from '../../redux/slice/authSlice';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -33,7 +36,10 @@ const Navbar = () => {
 
         {
           !isAuthenticated ? (
-            <NavLink to='/login' className="bg-blue-500 px-4 p-1 rounded-lg">
+            <NavLink to='/login' className={`bg-blue-500 px-4 p-1 rounded-lg ${({ isActive }) =>
+    isActive ? "bg-blue-700 text-white px-4 py-1 rounded-lg" : "bg-blue-500 px-4 py-1 rounded-lg"
+  }}`}
+            >
               <h1>Login</h1>
             </NavLink>
           ) : (

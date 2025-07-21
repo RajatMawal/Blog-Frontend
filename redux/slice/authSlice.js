@@ -27,7 +27,8 @@ export const registerUser = createAsyncThunk(
     try {
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/register`,
-        formData, { withCredentials: true }
+        formData,
+        { withCredentials: true }
       );
       return res.data.user;
     } catch (error) {
@@ -55,7 +56,8 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/logout`
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/logout`,
+        { withCredentials: true }
       );
       return res.data.message;
     } catch (error) {
@@ -77,11 +79,11 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     resetAuthState: (state) => {
-  state.user = null;
-  state.isAuthenticated = false;
-  state.error = null;
-  state.justLoggedOut = true;
-}
+      state.user = null;
+      state.isAuthenticated = false;
+      state.error = null;
+      state.justLoggedOut = true;
+    },
   },
   extraReducers: (builders) => {
     builders
@@ -118,12 +120,15 @@ const authSlice = createSlice({
       .addCase(checkUser.pending, (state) => {
         state.loading = true;
         state.error = null;
-        state.user = null;
+        // state.user = null;
         state.isAuthenticated = false;
       })
       .addCase(checkUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        // state.user = action.payload;
+        if (!state.user || state.user._id !== action.payload._id) {
+    state.user = action.payload;
+  }
         state.isAuthenticated = true;
         state.error = null;
       })
@@ -131,7 +136,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.user = null;
         state.isAuthenticated = false;
-        state.error = action.payload;
+        state.error = null;
       })
       .addCase(logoutUser.pending, (state) => {
         state.user = null;
@@ -140,7 +145,11 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logoutUser.fulfilled, (state) => {
-        return initialState;
+        state.user = null;
+        state.isAuthenticated = false;
+        state.loading = false;
+        state.error = null;
+        state.justLoggedOut = true;
       })
       .addCase(logoutUser.rejected, (state) => {
         state.user = null;
