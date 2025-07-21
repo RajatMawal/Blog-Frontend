@@ -55,9 +55,10 @@ export const checkUser = createAsyncThunk("auth/checkUser", async (_, thunkAPI) 
 });
 
 export const logoutUser = createAsyncThunk("auth/logout", async () => {
-  localStorage.removeItem("token");
+  localStorage.clear(); 
+  sessionStorage.clear()
   return "Logged out";
-});
+})
 
 const initialState = {
   user: null,

@@ -6,6 +6,11 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { IoExitOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { RiUserAddFill } from "react-icons/ri";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { FaCommentAlt } from "react-icons/fa";
+import { CiBoxList } from "react-icons/ci";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 
 import {
   logoutUser,
@@ -33,38 +38,27 @@ const Layout = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  const handleLogout = async () => {
-    try {
-      await dispatch(logoutUser()).unwrap();
-      dispatch(resetAuthState()); 
-      toast.success("Logged out successfully");
-      navigate("/");
-      setTimeout(() => window.location.reload(), 100); 
-    } catch (err) {
-      toast.error("Logout failed");
-    }
-  };
 
   const navItems = [
     {
       label: "Dashboard",
-      icon: <path d="M256 48L96 128v160c0 88.366 67.548 160 160 160s160-71.634 160-160V128L256 48z" />,
+      icon: <MdOutlineSpaceDashboard />,
     },
     {
       label: "AddBlog",
-      icon: <path d="M256 32C132.3 32 32 132.3 32 256s100.3 224 224 224 224-100.3 224-224S379.7 32 256 32zm32 240h-48v48h-32v-48h-48v-32h48v-48h32v48h48v32z" />,
+      icon: <IoMdAddCircleOutline />,
     },
     {
       label: "BlogList",
-      icon: <path d="M96 128h320v32H96zm0 96h320v32H96zm0 96h192v32H96z" />,
+      icon: <CiBoxList />,
     },
     {
       label: "Comments",
-      icon: <path d="M496 128H16v256h128v64l96-64h256z" />,
+      icon: <FaCommentAlt />,
     },
     {
       label: "register",
-      icon: <path d="" />, // simplified for brevity
+      icon: <RiUserAddFill />, 
     },
   ];
 
@@ -123,31 +117,32 @@ const Layout = () => {
                       >
                         {item.icon}
                       </svg>
+                      {item.icon}
                       <span>{item.label}</span>
                     </NavLink>
                   </li>
                 ))}
               </ul>
 
-              {/* Logout */}
+              
               <ul className="text-sm mt-4">
                 <li>
-                  <button
-                    onClick={handleLogout}
+                  <NavLink
+                    
+                    to={"/admin/logout"}
                     className="flex items-center px-3 py-2 hover:bg-gray-700 rounded-md w-full"
                   >
                     <IoExitOutline className="text-2xl mr-2" />
                     <span>Logout</span>
-                  </button>
+                  </NavLink>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-
-        {/* Main Content */}
+        
         <div className="flex-1 flex flex-col overflow-x-hidden">
-          {/* Mobile Header */}
+        
           <div className="md:hidden bg-[rgb(22,22,32)] text-white flex items-center justify-between p-4">
             <button onClick={() => setIsOpen(!isOpen)}>
               <FaBars className="text-2xl" />
