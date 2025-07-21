@@ -75,7 +75,7 @@ const handleDelete = async(id)=>{
         ))}
       </div>
 
-      {/* Latest Blogs */}
+    
       <div className="mb-4 flex items-center gap-2">
         <img
           src={assets.star_icon}

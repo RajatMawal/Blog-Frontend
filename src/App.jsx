@@ -47,7 +47,7 @@ const App = () => {
 useEffect(() => {
   if (justLoggedOut) {
     dispatch(checkUser());
-    dispatch(resetAuthState()); // ✅ reset the flag
+    dispatch(resetAuthState());
   }
 }, [justLoggedOut]);
 

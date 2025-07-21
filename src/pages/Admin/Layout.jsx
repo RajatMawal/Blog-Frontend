@@ -64,7 +64,7 @@ const Layout = () => {
     },
     {
       label: "register",
-      icon: <path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0z..." />, // simplified for brevity
+      icon: <path d="" />, // simplified for brevity
     },
   ];
 

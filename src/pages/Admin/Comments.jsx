@@ -52,7 +52,7 @@ const Comments = () => {
       !filterdComments ? <Loader/> : <div className="p-4 sm:p-6 min-h-screen bg-[#121212] text-white ">
       <h1 className="text-2xl sm:text-3xl font-bold mb-6">Comments</h1>
 
-      {/* Filter Buttons */}
+      
       <div className="flex flex-wrap gap-3 justify-end mb-6">
         {["Approved", "notApproved"].map((item, idx) => (
           <button
@@ -69,7 +69,7 @@ const Comments = () => {
         ))}
       </div>
 
-      {/* Comments Table */}
+      
       <div className="overflow-x-auto rounded-xl border border-gray-700 bg-[#1e1e1e]">
         <table className="min-w-full text-sm text-left">
           <thead className="bg-[#2c2c2c] text-gray-400 uppercase tracking-wide">
