@@ -24,7 +24,8 @@ const AddUser = () => {
       const result = await dispatch(registerUser(data)).unwrap();
       if (result) {
         toast.success("User added successfully");
-        setData({ name: "", email: "", password: "" }); // Reset form
+        console.log(data)
+        setData({ name: "", email: "", password: "" }); //
       }
     } catch (error) {
       toast.error(error?.message || "Failed to add user");

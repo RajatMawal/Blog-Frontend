@@ -23,8 +23,13 @@ export const loginUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   "auth/register",
   async (formData, thunkAPI) => {
+    const token = localStorage.getItem("token");
     try {
-      const res = await axios.post(`${BASE_URL}/api/user/register`, formData);
+      const res = await axios.post(`${BASE_URL}/api/user/register`, formData,{
+        headers:{
+           Authorization: `Bearer ${token}`,
+        }
+      });
       localStorage.setItem("token", res.data.token);
       return res.data.user;
     } catch (error) {
